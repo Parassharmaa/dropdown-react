@@ -1,4 +1,4 @@
-import { CaretDown, UserCircle, Check } from "@phosphor-icons/react";
+import { CaretDown, UserCircle, Check, Info } from "@phosphor-icons/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import useClickOutside from "../hooks/useClickOutside";
 import { createPortal } from "react-dom";
@@ -15,6 +15,7 @@ type props = {
   clearable?: boolean;
   leftIcon?: React.ReactNode;
   iconType?: "check" | "radio";
+  isRequired?: boolean;
 };
 
 type DropdownListProps = {
@@ -104,6 +105,7 @@ const Dropdown = ({
   options,
   onSelect,
   selectedIndex,
+  isRequired = false,
   iconType = "check",
   clearable,
   leftIcon = <UserCircle width={24} height={24} />,
@@ -155,7 +157,15 @@ const Dropdown = ({
   return (
     <div className="dropdown-container">
       <div className="flex justify-between">
-        <p className="text-[13.5px] font-medium">{label}</p>
+        <div className="flex gap-1">
+          {label && (
+            <>
+              <p className="text-[13.5px] font-medium">{label}</p>
+              <Info width={18} height={18} className="text-gray-500" />
+              {isRequired && <span className="text-red-500">*</span>}
+            </>
+          )}
+        </div>
 
         {clearable && selectedOptionIndex !== undefined && (
           <button
@@ -166,7 +176,7 @@ const Dropdown = ({
           </button>
         )}
       </div>
-      <div className="relative my-1" ref={dropdownRef}>
+      <div className="relative my-[0.5px]" ref={dropdownRef}>
         <button
           onClick={() => {
             if (!isDisabled) {

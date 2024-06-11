@@ -21,6 +21,7 @@ export const Basic: Story = {
     label: "Label",
     helperText: "Helper text",
     placeholder: "Lorem ipsum",
+    isRequired: false,
     options: [
       "Option 1",
       "Option 2",
@@ -132,5 +133,22 @@ export const CustomLeftIcon: Story = {
     ],
     selectedIndex: 1,
     leftIcon: <MagnifyingGlass width={24} height={24} />,
+  },
+};
+
+export const Required: Story = {
+  args: {
+    label: "Label",
+    helperText: "Helper text",
+    placeholder: "Lorem ipsum",
+    isRequired: true,
+    options: [
+      "Option 1",
+      "Option 2",
+      "Option 3",
+      "Option 4",
+      "Option 5",
+      "Option 6",
+    ],
   },
 };
