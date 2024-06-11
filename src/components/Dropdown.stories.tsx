@@ -1,16 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Dropdown from "./Dropdown";
 import { MagnifyingGlass } from "@phosphor-icons/react";
+import { fn } from "@storybook/test";
 
 const meta = {
   title: "Dropdown",
   component: Dropdown,
   parameters: {
     layout: "centered",
+    parameters: { actions: { argTypesRegex: "^on.*" } },
   },
   tags: ["autodocs"],
   argTypes: {},
-  args: {},
+  args: {
+    onSelect: fn(),
+  },
 } satisfies Meta<typeof Dropdown>;
 
 export default meta;

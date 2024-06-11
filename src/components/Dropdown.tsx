@@ -10,7 +10,7 @@ type props = {
   isError?: boolean;
   placeholder?: string;
   options: string[];
-  onSelect?: (index: number) => void;
+  onSelect?: (index: number | undefined) => void;
   selectedIndex?: number;
   clearable?: boolean;
   leftIcon?: React.ReactNode;
@@ -116,9 +116,15 @@ const Dropdown = ({
     number | undefined
   >();
 
-  const handleChange = (index: number) => {
-    setSelectedOptionIndex(index);
-    onSelect && onSelect(index);
+  const handleChange = (index: number | undefined) => {
+    if (index !== undefined) {
+      setSelectedOptionIndex(index);
+      onSelect && onSelect(index);
+      setIsOpen(false);
+      return;
+    }
+    setSelectedOptionIndex(undefined);
+    onSelect && onSelect(undefined);
     setIsOpen(false);
   };
 
@@ -169,7 +175,7 @@ const Dropdown = ({
 
         {clearable && selectedOptionIndex !== undefined && (
           <button
-            onClick={() => setSelectedOptionIndex(undefined)}
+            onClick={() => handleChange(undefined)}
             className="text-[13.5px] text-gray-500"
           >
             clear
