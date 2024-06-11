@@ -1,5 +1,8 @@
 # React Dropdown
 
+<!-- insert gif  -->
+![Demo](./public/demo.gif)
+
 ### Usage
 
 ```jsx

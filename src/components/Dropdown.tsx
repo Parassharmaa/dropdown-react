@@ -186,11 +186,13 @@ const Dropdown = ({
         >
           <div>{leftIcon && leftIcon}</div>
           <div className="min-w-32 flex-1 text-[15px text-left text-ellipsis whitespace-nowrap overflow-hidden">
-            <span className="text-gray-500">
-              {selectedOptionIndex !== undefined
-                ? options[selectedOptionIndex]
-                : placeholder}
-            </span>
+            {selectedOptionIndex !== undefined ? (
+              <span className="text-gray-500">
+                {options[selectedOptionIndex]}
+              </span>
+            ) : (
+              <span className="text-gray-300">{placeholder}</span>
+            )}
           </div>
           <div
             className={`${isOpen && "-rotate-180"} transition-transform duration-300 ease-in-out`}
